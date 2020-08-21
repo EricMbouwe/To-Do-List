@@ -1,0 +1,26 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "A to-do list app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricMbouwe/To-Do-List.git"
+  },
+  "author": "Eric mbouwe and Azeem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EricMbouwe/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/EricMbouwe/To-Do-List#readme",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "halfmoon": "^1.0.4"
+  }
+}
