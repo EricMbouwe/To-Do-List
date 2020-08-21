@@ -1,10 +1,7 @@
 const Todo = (title, description, dueDate, init) => {
   let priority = init * 2
 
-  // const setPriority = (newPriority) => priority += newPriority
-  function setPriority(x) {
-    date += x
-  }
+  const setPriority = (newPriority) => priority += newPriority
 
   const getTitle = () => title;
 
