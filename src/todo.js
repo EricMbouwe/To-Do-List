@@ -11,20 +11,23 @@ const createTodo = (e) => {
     return priorityVal;
   };
 
-  const obj = {
+  const task = {
     title: displayController.title.value,
     description: displayController.description.value,
     dueDate: displayController.dueDate.value,
     priority: getPriorityVal(),
   };
 
-  console.log(obj);
+  displayController.tasks.push(task);
+  console.log(displayController.tasks);
 
-  displayController.addTask(obj.priority);
+  localStorage.setItem('tasks', JSON.stringify(displayController.tasks));
+
+  displayController.newItem(task);
 
   displayController.clearContents();
 
-  return { obj };
+  return { task };
 };
 
 export default createTodo;
