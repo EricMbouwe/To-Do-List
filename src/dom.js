@@ -6,9 +6,10 @@ const displayController = (() => {
   const lowPriority = document.getElementById('priority-low');
   const container = document.querySelector('.container');
   const projectList = document.querySelector('.project-list');
-  const projectsPanel = document.getElementById('projectsPanel')
-  const projectForm = document.getElementById('addProject')
-  const taskForm = document.getElementById('addTask')
+  const projectsGrid = document.querySelector('.projects-grid')
+  const tasksGrid = document.querySelector('.tasks-grid')
+  const projectFormParent = document.querySelector('.project-form-parent')
+  const taskFormParent = document.querySelector('.task-form-parent')
 
 
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -30,7 +31,7 @@ const displayController = (() => {
       `;
       })
       .join('');
-    container.appendChild(newCard);
+    tasksGrid.appendChild(newCard);
   };
 
   const newItem = (task) => {
@@ -45,9 +46,8 @@ const displayController = (() => {
           <p class="text-muted">Project: ${task.project}</p>
         </div>
       `;
-    container.appendChild(newCard);
+    tasksGrid.appendChild(newCard);
   };
-  tasks;
 
   const clearContents = () => {
     title.value = '';
@@ -68,21 +68,21 @@ const displayController = (() => {
     projects.map(project => {
       const projectElement = document.createElement('div')
       projectElement.innerHTML = `<p>${project}</p>`
-      projectsPanel.appendChild(projectElement)
-      console.log(projectElement);
+      projectsGrid.appendChild(projectElement)
+      console.log(projrctGrid);
     })
   }
 
   const displayProjectForm = () => {
-    projectForm.classList.toggle('d-none')
+    projectFormParent.classList.toggle('d-none')
   }
   
   const displayTaskForm = () => {
-    taskForm.classList.toggle('d-none')
+    taskFormParent.classList.toggle('d-none')
   }
   
   const cancelSubmission = () => {
-    projectForm.classList.add('d-none') || taskForm.classList.add('d-none')
+    projectFormParent.classList.add('d-none') || taskFormParent.classList.add('d-none')
   }
 
   return {

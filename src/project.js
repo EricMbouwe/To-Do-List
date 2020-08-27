@@ -1,4 +1,6 @@
 import displayController from './dom';
+const projectFormParent = document.querySelector('.project-form-parent')
+
 
 
 const createProject = (e) => {
@@ -16,8 +18,7 @@ const createProject = (e) => {
 
   localStorage.setItem('projects', JSON.stringify(displayController.projects));
 
-  const form = document.getElementById('addProject')
-  form.classList.toggle('d-none')
+  projectFormParent.classList.toggle('d-none')
 
   console.log(displayController.projects);
 };

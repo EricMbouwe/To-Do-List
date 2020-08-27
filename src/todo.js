@@ -1,4 +1,6 @@
 import displayController from './dom';
+const taskFormParent = document.querySelector('.task-form-parent')
+
 
 const createTodo = (e) => {
   e.preventDefault();
@@ -27,7 +29,9 @@ const createTodo = (e) => {
 
   localStorage.setItem('tasks', JSON.stringify(displayController.tasks));
 
+  
   displayController.newItem(task);
+  taskFormParent.classList.add('d-none')
 
   displayController.clearContents();
 
