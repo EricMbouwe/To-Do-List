@@ -16,6 +16,10 @@ const createTodo = (e) => {
     description: displayController.description.value,
     dueDate: displayController.dueDate.value,
     priority: getPriorityVal(),
+    project:
+      displayController.projectList.options[
+        displayController.projectList.selectedIndex
+      ].value,
   };
 
   displayController.tasks.push(task);

@@ -8,6 +8,30 @@
   </head>
   <body>
     <div class="container mt-20">
+      <!-- New Project Form -->
+
+      <form
+        action="..."
+        method="..."
+        class="float-right w-400 mw-full add-project"
+      >
+        <div class="form-group">
+          <label for="project-name" class="required">Project Name</label>
+          <input
+            class="project"
+            type="text"
+            class="form-control"
+            id="project-name"
+            placeholder="Project Name..."
+            required="required"
+          />
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="add-project" />
+      </form>
+
+      <!-- New Task Form -->
+
       <form action="..." method="..." class="w-400 mw-full add-task">
         <!-- w-400 = width: 40rem (400px), mw-full = max-width: 100% -->
         <!-- Input -->
@@ -23,7 +47,23 @@
           />
         </div>
 
-        <!-- Radio -->
+        <!-- Project Select -->
+
+        <div class="form-group">
+          <label for="projects" class="required">Select a Project</label>
+          <select
+            class="project-list form-control"
+            id="projects"
+            required="required"
+          >
+            <option value="" selected="selected" disabled="disabled">
+              Select a project
+            </option>
+            <option value="General">General</option>
+          </select>
+        </div>
+
+        <!-- Radio Priority -->
         <div class="form-group">
           <label for="gender-male" class="required">Priority</label>
           <div class="custom-radio">
