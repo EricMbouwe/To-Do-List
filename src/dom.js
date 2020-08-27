@@ -3,9 +3,16 @@ const displayController = (() => {
   const description = document.querySelector('.description');
   const dueDate = document.getElementById('due-date');
   const priority = document.getElementsByName('priority');
-  const submitBtn = document.querySelector('.submit');
+  const lowPriority = document.getElementById('priority-low');
 
-  return { title, description, dueDate, priority, submitBtn };
+  const clearContents = () => {
+    title.value = '';
+    description.value = '';
+    dueDate.value = '';
+    lowPriority.checked = true;
+  };
+
+  return { title, description, dueDate, priority, clearContents };
 })();
 
 export default displayController;
