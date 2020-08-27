@@ -1,18 +1,19 @@
 const createTodo = (title, description, dueDate, priority) => {
-  priority = priority || 'low';
-
   const obj = {
-    title,
-    description,
-    dueDate,
-    priority,
+    title: title,
+    description: description,
+    dueDate: dueDate,
+    priority: priority,
+    setPriority: function () {
+      if (this.priority !== undefined) {
+        return (this.priority = this.priority);
+      } else {
+        return (this.priority = 'low');
+      }
+    },
   };
 
-  const setPriority = (priority) => {
-    obj.priority = priority;
-  };
-
-  return { obj, setPriority };
+  return { obj };
 };
 
 export default createTodo;

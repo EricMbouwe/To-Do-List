@@ -7,18 +7,86 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="w-400 mw-full">
-      <!-- w-400 = width: 40rem (400px), mw-full = max-width: 100% -->
-      <div class="card">
-        <h2 class="card-title">Title of the article</h2>
-        <p class="text-muted">
-          Subtitle that hooks the reader and prompts them to click on the read
-          more button.
-        </p>
-        <div class="text-right">
-          <!-- text-right = text-align: right -->
-          <a href="#" class="btn">Read more</a>
+    <div class="container mt-20">
+      <form action="..." method="..." class="w-400 mw-full">
+        <!-- w-400 = width: 40rem (400px), mw-full = max-width: 100% -->
+        <!-- Input -->
+        <div class="form-group">
+          <label for="full-name" class="required">Title</label>
+          <input
+            class="title"
+            type="text"
+            class="form-control"
+            id="full-name"
+            placeholder="Full name"
+            required="required"
+          />
         </div>
+
+        <!-- Radio -->
+        <div class="form-group">
+          <label for="gender-male" class="required">Priority</label>
+          <div class="custom-radio">
+            <input
+              type="radio"
+              name="priority"
+              id="priority-low"
+              value="low"
+              required="required"
+            />
+            <label for="priority-low">Low</label>
+          </div>
+          <div class="custom-radio">
+            <input
+              type="radio"
+              name="priority"
+              id="priority-medium"
+              value="medium"
+              required="required"
+            />
+            <label for="priority-medium">Medium</label>
+          </div>
+          <div class="custom-radio">
+            <input
+              type="radio"
+              name="priority"
+              id="priority-high"
+              value="high"
+              required="required"
+            />
+            <label for="priority-high">High</label>
+          </div>
+        </div>
+
+        <!-- Select -->
+        <div class="form-group">
+          <label for="area-of-specialization" class="required">Due Date</label>
+          <input type="date" id="due-date" name="due-date" />
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            class="description form-control"
+            id="description"
+            placeholder="Write a short description about your task."
+          ></textarea>
+        </div>
+
+        <!-- Submit button -->
+        <input class="submit btn btn-primary" type="submit" value="Add Task" />
+      </form>
+    </div>
+
+    <!-- Required for the custom file input -->
+    <script src="path/to/halfmoon.js"></script>
+    <div class="w-250 mw-full">
+      <div class="card">
+        <h2 class="card-title">Title</h2>
+        <p class="text-muted">Description</p>
+        <div class="text-left">Due Date</div>
+        <p class="btn">Priority</p>
       </div>
     </div>
 
