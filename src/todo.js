@@ -2,7 +2,6 @@ import displayController from './dom';
 
 const createTodo = (e) => {
   e.preventDefault();
-  console.log('sadegse');
   const getPriorityVal = () => {
     let priorityVal;
     for (let i = 0; i < displayController.priority.length; i++) {
@@ -20,6 +19,8 @@ const createTodo = (e) => {
   };
 
   console.log(obj);
+
+  displayController.addTask(obj.priority);
 
   displayController.clearContents();
 
