@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/EricMbouwe/To-Do-List#readme",
   "devDependencies": {
+    "@types/halfmoon": "^1.0.0",
+    "css-loader": "^4.2.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
