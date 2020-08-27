@@ -4,7 +4,8 @@
   "description": "A to-do list app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,10 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.1",
     "style-loader": "^1.2.1",
+    "web-dev-server": "^3.0.22",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "halfmoon": "^1.0.4"
