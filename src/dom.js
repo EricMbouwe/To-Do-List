@@ -6,6 +6,10 @@ const displayController = (() => {
   const lowPriority = document.getElementById('priority-low');
   const container = document.querySelector('.container');
   const projectList = document.querySelector('.project-list');
+  const projectsPanel = document.getElementById('projectsPanel')
+  const projectForm = document.getElementById('addProject')
+  const taskForm = document.getElementById('addTask')
+
 
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const projects = JSON.parse(localStorage.getItem('projects')) || ['General'];
@@ -22,7 +26,7 @@ const displayController = (() => {
           <div class="text-left">${task.dueDate}</div>
           <p class="btn">${task.priority}</p>
           <p class="text-muted">Project: ${task.project}</p>
-        </div>
+        </div> 
       `;
       })
       .join('');
@@ -55,12 +59,31 @@ const displayController = (() => {
   const projectSelection = () => {
     projectList.innerHTML = projects
       .map((project) => {
-        return `
-      <option value="${project}">${project}</option>
-    `;
+        return `<option value="${project}">${project}</option>`;
       })
       .join('');
   };
+
+  const populateProjectsPanel = () => {
+    projects.map(project => {
+      const projectElement = document.createElement('div')
+      projectElement.innerHTML = `<p>${project}</p>`
+      projectsPanel.appendChild(projectElement)
+      console.log(projectElement);
+    })
+  }
+
+  const displayProjectForm = () => {
+    projectForm.classList.toggle('d-none')
+  }
+  
+  const displayTaskForm = () => {
+    taskForm.classList.toggle('d-none')
+  }
+  
+  const cancelSubmission = () => {
+    projectForm.classList.add('d-none') || taskForm.classList.add('d-none')
+  }
 
   return {
     title,
@@ -72,8 +95,12 @@ const displayController = (() => {
     addTasks,
     tasks,
     newItem,
+    populateProjectsPanel,
     projects,
     projectSelection,
+    displayProjectForm,
+    displayTaskForm,
+    cancelSubmission
   };
 })();
 
