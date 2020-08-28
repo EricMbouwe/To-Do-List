@@ -6,18 +6,20 @@ const displayController = (() => {
   const lowPriority = document.getElementById('priority-low');
   const container = document.querySelector('.container');
   const projectList = document.querySelector('.project-list');
-  const projectsGrid = document.querySelector('.projects-grid')
-  const tasksGrid = document.querySelector('.tasks-grid')
-  const projectFormParent = document.querySelector('.project-form-parent')
-  const taskFormParent = document.querySelector('.task-form-parent')
-
+  const projectsGrid = document.querySelector('.projects-grid');
+  const tasksGrid = document.querySelector('.tasks-grid');
+  const projectFormParent = document.querySelector('.project-form-parent');
+  const taskFormParent = document.querySelector('.task-form-parent');
 
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const projects = JSON.parse(localStorage.getItem('projects')) || ['General'];
 
+  const sidebarMenu = document.querySelector('.sidebar-menu');
+
   const addTasks = (tasks) => {
+    tasksGrid.innerHTML = '';
     const newCard = document.createElement('div');
-    newCard.classList.add('w-250', 'mw-full');
+    newCard.classList.add('card-container', 'mw-full');
     newCard.innerHTML = tasks
       .map((task) => {
         return `
@@ -36,7 +38,7 @@ const displayController = (() => {
 
   const newItem = (task) => {
     const newCard = document.createElement('div');
-    newCard.classList.add('w-250', 'mw-full');
+    newCard.classList.add('card-container', 'mw-full');
     newCard.innerHTML = `
         <div class="card">
           <h2 class="card-title">${task.title}</h2>
@@ -65,25 +67,44 @@ const displayController = (() => {
   };
 
   const populateProjectsPanel = () => {
-    projects.map(project => {
-      const projectElement = document.createElement('div')
-      projectElement.innerHTML = `<p>${project}</p>`
-      projectsGrid.appendChild(projectElement)
-      console.log(projrctGrid);
-    })
-  }
+    projects.map((project) => {
+      const projectElement = document.createElement('a');
+      projectElement.classList.add('project-link', 'sidebar-link');
+      projectElement.href = '#';
+      projectElement.innerText = `${project}`;
+      sidebarMenu.appendChild(projectElement);
+    });
+  };
+
+  const populateSingleProject = (project) => {
+    const projectElement = document.createElement('a');
+    projectElement.classList.add('project-link', 'sidebar-link');
+    projectElement.href = '#';
+    projectElement.innerText = `${project}`;
+    sidebarMenu.appendChild(projectElement);
+    projectElement.addEventListener('click', () =>
+      displayController.addTasks(
+        displayController.filterTasks(displayController.tasks, project)
+      )
+    );
+  };
+
+  const filterTasks = (tasks, project) => {
+    return tasks.filter((task) => task.project == project);
+  };
 
   const displayProjectForm = () => {
-    projectFormParent.classList.toggle('d-none')
-  }
-  
+    projectFormParent.classList.toggle('d-none');
+  };
+
   const displayTaskForm = () => {
-    taskFormParent.classList.toggle('d-none')
-  }
-  
+    taskFormParent.classList.toggle('d-none');
+  };
+
   const cancelSubmission = () => {
-    projectFormParent.classList.add('d-none') || taskFormParent.classList.add('d-none')
-  }
+    projectFormParent.classList.add('d-none') ||
+      taskFormParent.classList.add('d-none');
+  };
 
   return {
     title,
@@ -100,7 +121,9 @@ const displayController = (() => {
     projectSelection,
     displayProjectForm,
     displayTaskForm,
-    cancelSubmission
+    cancelSubmission,
+    filterTasks,
+    populateSingleProject,
   };
 })();
 

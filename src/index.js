@@ -13,15 +13,25 @@ addTaskForm.addEventListener('submit', createTodo);
 const addProjectForm = document.querySelector('.add-project');
 addProjectForm.addEventListener('submit', createProject);
 
-const projectBtn = document.getElementById('newProjectBtn')
-projectBtn.addEventListener('click', displayController.displayProjectForm)
+const projectBtn = document.getElementById('newProjectBtn');
+projectBtn.addEventListener('click', displayController.displayProjectForm);
 
-const taskBtn = document.getElementById('newTaskBtn')
-taskBtn.addEventListener('click', displayController.displayTaskForm)
+const taskBtn = document.getElementById('newTaskBtn');
+taskBtn.addEventListener('click', displayController.displayTaskForm);
 
-const cancelBtns = document.querySelectorAll('.cancel-btn')
-cancelBtns.forEach(button => {
-  button.addEventListener('click', displayController.cancelSubmission)
-})
+const cancelBtns = document.querySelectorAll('.cancel-btn');
+cancelBtns.forEach((button) => {
+  button.addEventListener('click', displayController.cancelSubmission);
+});
 
 displayController.addTasks(displayController.tasks);
+displayController.populateProjectsPanel();
+
+const projectLinks = document.querySelectorAll('.project-link');
+projectLinks.forEach((link) =>
+  link.addEventListener('click', () =>
+    displayController.addTasks(
+      displayController.filterTasks(displayController.tasks, link.innerHTML)
+    )
+  )
+);

@@ -1,7 +1,6 @@
 @import '~halfmoon/css/halfmoon.min.css';
 
-
-.project-form-parent, 
+.project-form-parent,
 .task-form-parent {
   position: fixed;
   top: 0;
@@ -30,10 +29,20 @@
   flex: 3;
 }
 
-.tasks-grid > div{
-  // display: flex;
+// .tasks-grid > div{
+//   // display: flex;
+
+//   .card {
+//     flex: 1;
+//   }
+// }
+
+.card-container {
+  display: flex;
 
   .card {
-    flex: 1;
+    background: antiquewhite;
+    margin: 1rem !important;
+    padding: 1.5rem !important;
   }
 }
