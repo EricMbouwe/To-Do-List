@@ -28,11 +28,20 @@ const displayController = (() => {
           <p class="text-muted">${task.description}</p>
           <div class="text-left">${task.dueDate}</div>
           <p>Priority: ${task.priority}</p>
+          <div class="delete-task btn btn-danger">Delete</div>
         </div> 
       `;
       })
       .join('');
     tasksGrid.appendChild(newCard);
+    addDeleteListeners();
+  };
+
+  const addDeleteListeners = () => {
+    const deleteTask = document.querySelectorAll('.delete-task');
+    deleteTask.forEach((button) => {
+      button.addEventListener('click', displayController.handleDeleteTask);
+    });
   };
 
   const newItem = (task) => {
@@ -44,6 +53,7 @@ const displayController = (() => {
           <p class="text-muted">${task.description}</p>
           <div class="text-left">${task.dueDate}</div>
           <p>Priority: ${task.priority}</p>
+          <div class="delete-task btn btn-danger">Delete</div>
         </div>
       `;
     tasksGrid.appendChild(newCard);
@@ -110,6 +120,14 @@ const displayController = (() => {
     project.classList.add('selected');
   };
 
+  const handleDeleteTask = (e) => {
+    let deleteTitle = e.path[1].firstElementChild.textContent;
+    let index = tasks.findIndex((item) => item.title == deleteTitle);
+    tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    addTasks(tasks);
+  };
+
   return {
     title,
     description,
@@ -129,6 +147,8 @@ const displayController = (() => {
     filterTasks,
     populateSingleProject,
     selectedProject,
+    handleDeleteTask,
+    addDeleteListeners,
   };
 })();
 

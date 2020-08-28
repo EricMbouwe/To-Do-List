@@ -38,6 +38,7 @@ projectLinks.forEach((link) =>
 
 window.addEventListener('load', function () {
   displayController.addTasks(displayController.tasks);
+  displayController.projectSelection();
 
   document.querySelector('.all-tasks').addEventListener('click', function () {
     displayController.addTasks(displayController.tasks);
