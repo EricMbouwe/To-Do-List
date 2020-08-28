@@ -27,8 +27,7 @@ const displayController = (() => {
           <h2 class="card-title">${task.title}</h2>
           <p class="text-muted">${task.description}</p>
           <div class="text-left">${task.dueDate}</div>
-          <p class="btn">${task.priority}</p>
-          <p class="text-muted">Project: ${task.project}</p>
+          <p>Priority: ${task.priority}</p>
         </div> 
       `;
       })
@@ -44,8 +43,7 @@ const displayController = (() => {
           <h2 class="card-title">${task.title}</h2>
           <p class="text-muted">${task.description}</p>
           <div class="text-left">${task.dueDate}</div>
-          <p class="btn">${task.priority}</p>
-          <p class="text-muted">Project: ${task.project}</p>
+          <p>Priority: ${task.priority}</p>
         </div>
       `;
     tasksGrid.appendChild(newCard);

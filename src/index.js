@@ -24,7 +24,6 @@ cancelBtns.forEach((button) => {
   button.addEventListener('click', displayController.cancelSubmission);
 });
 
-displayController.addTasks(displayController.tasks);
 displayController.populateProjectsPanel();
 
 const projectLinks = document.querySelectorAll('.project-link');
@@ -36,3 +35,12 @@ projectLinks.forEach((link) =>
     displayController.selectedProject(link);
   })
 );
+
+window.addEventListener('load', function () {
+  displayController.addTasks(displayController.tasks);
+
+  document.querySelector('.all-tasks').addEventListener('click', function () {
+    displayController.addTasks(displayController.tasks);
+    displayController.selectedProject(this);
+  });
+});
