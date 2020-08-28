@@ -1,13 +1,13 @@
 import displayController from './dom';
+
 const taskFormParent = document.querySelector('.task-form-parent');
 
 const createTodo = (e) => {
   e.preventDefault();
   const getPriorityVal = () => {
     let priorityVal;
-    for (let i = 0; i < displayController.priority.length; i++) {
-      if (displayController.priority[i].checked)
-        priorityVal = displayController.priority[i].value;
+    for (let i = 0; i < displayController.priority.length; i += 1) {
+      if (displayController.priority[i].checked) priorityVal = displayController.priority[i].value;
     }
     return priorityVal;
   };
@@ -24,7 +24,6 @@ const createTodo = (e) => {
   };
 
   displayController.tasks.push(task);
-  console.log(displayController.tasks);
 
   localStorage.setItem('tasks', JSON.stringify(displayController.tasks));
 

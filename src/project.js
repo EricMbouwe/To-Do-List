@@ -7,7 +7,7 @@ const createProject = (e) => {
 
   const projectName = document.querySelector('.project');
 
-  let project = projectName.value;
+  const project = projectName.value;
 
   displayController.projects.push(project);
 
@@ -19,8 +19,6 @@ const createProject = (e) => {
   localStorage.setItem('projects', JSON.stringify(displayController.projects));
 
   projectFormParent.classList.toggle('d-none');
-
-  console.log(displayController.projects);
 };
 
 export default createProject;

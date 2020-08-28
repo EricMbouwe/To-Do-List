@@ -1,8 +1,8 @@
-require('./style.scss');
-
 import createTodo from './todo';
 import displayController from './dom';
 import createProject from './project';
+
+require('./style.scss');
 const halfmoon = require('halfmoon');
 
 halfmoon.onDOMContentLoaded();
@@ -27,20 +27,18 @@ cancelBtns.forEach((button) => {
 displayController.populateProjectsPanel();
 
 const projectLinks = document.querySelectorAll('.project-link');
-projectLinks.forEach((link) =>
-  link.addEventListener('click', () => {
-    displayController.addTasks(
-      displayController.filterTasks(displayController.tasks, link.innerHTML)
-    );
-    displayController.selectedProject(link);
-  })
-);
+projectLinks.forEach((link) => link.addEventListener('click', () => {
+  displayController.addTasks(
+    displayController.filterTasks(displayController.tasks, `${link.innerHTML}`),
+  );
+  displayController.selectedProject(link);
+}));
 
-window.addEventListener('load', function () {
+window.addEventListener('load', () => {
   displayController.addTasks(displayController.tasks);
   displayController.projectSelection();
 
-  document.querySelector('.all-tasks').addEventListener('click', function () {
+  document.querySelector('.all-tasks').addEventListener('click', () => {
     displayController.addTasks(displayController.tasks);
     displayController.selectedProject(this);
   });

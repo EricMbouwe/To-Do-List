@@ -4,9 +4,7 @@ const displayController = (() => {
   const dueDate = document.getElementById('due-date');
   const priority = document.getElementsByName('priority');
   const lowPriority = document.getElementById('priority-low');
-  const container = document.querySelector('.container');
   const projectList = document.querySelector('.project-list');
-  const projectsGrid = document.querySelector('.projects-grid');
   const tasksGrid = document.querySelector('.tasks-grid');
   const projectFormParent = document.querySelector('.project-form-parent');
   const taskFormParent = document.querySelector('.task-form-parent');
@@ -16,13 +14,20 @@ const displayController = (() => {
 
   const sidebarMenu = document.querySelector('.sidebar-menu');
 
+
+  const addDeleteListeners = () => {
+    const deleteTask = document.querySelectorAll('.delete-task');
+    deleteTask.forEach((button) => {
+      button.addEventListener('click', displayController.handleDeleteTask);
+    });
+  };
+
   const addTasks = (tasks) => {
     tasksGrid.innerHTML = '';
     const newCard = document.createElement('div');
     newCard.classList.add('card-container', 'mw-full');
     newCard.innerHTML = tasks
-      .map((task) => {
-        return `
+      .map((task) => `
         <div class="card ${task.priority.toLowerCase()}">
           <h2 class="card-title">${task.title}</h2>
           <p class="text-muted">${task.description}</p>
@@ -30,18 +35,10 @@ const displayController = (() => {
           <p>Priority: ${task.priority}</p>
           <div class="delete-task btn btn-danger">Delete</div>
         </div> 
-      `;
-      })
+      `)
       .join('');
     tasksGrid.appendChild(newCard);
     addDeleteListeners();
-  };
-
-  const addDeleteListeners = () => {
-    const deleteTask = document.querySelectorAll('.delete-task');
-    deleteTask.forEach((button) => {
-      button.addEventListener('click', displayController.handleDeleteTask);
-    });
   };
 
   const newItem = (task) => {
@@ -68,9 +65,7 @@ const displayController = (() => {
 
   const projectSelection = () => {
     projectList.innerHTML = projects
-      .map((project) => {
-        return `<option value="${project}">${project}</option>`;
-      })
+      .map((project) => `<option value="${project}">${project}</option>`)
       .join('');
   };
 
@@ -81,6 +76,7 @@ const displayController = (() => {
       projectElement.href = '#';
       projectElement.innerText = `${project}`;
       sidebarMenu.appendChild(projectElement);
+      return 1;
     });
   };
 
@@ -90,16 +86,12 @@ const displayController = (() => {
     projectElement.href = '#';
     projectElement.innerText = `${project}`;
     sidebarMenu.appendChild(projectElement);
-    projectElement.addEventListener('click', () =>
-      displayController.addTasks(
-        displayController.filterTasks(displayController.tasks, project)
-      )
-    );
+    projectElement.addEventListener('click', () => displayController.addTasks(
+      displayController.filterTasks(displayController.tasks, project),
+    ));
   };
 
-  const filterTasks = (tasks, project) => {
-    return tasks.filter((task) => task.project == project);
-  };
+  const filterTasks = (tasks, project) => tasks.filter((task) => task.project === project);
 
   const displayProjectForm = () => {
     projectFormParent.classList.toggle('d-none');
@@ -109,10 +101,7 @@ const displayController = (() => {
     taskFormParent.classList.toggle('d-none');
   };
 
-  const cancelSubmission = () => {
-    projectFormParent.classList.add('d-none') ||
-      taskFormParent.classList.add('d-none');
-  };
+  const cancelSubmission = () => projectFormParent.classList.add('d-none') || taskFormParent.classList.add('d-none');
 
   const selectedProject = (project) => {
     const projectLinks = document.querySelectorAll('.project-link');
@@ -121,8 +110,8 @@ const displayController = (() => {
   };
 
   const handleDeleteTask = (e) => {
-    let deleteTitle = e.path[1].firstElementChild.textContent;
-    let index = tasks.findIndex((item) => item.title == deleteTitle);
+    const deleteTitle = e.path[1].firstElementChild.textContent;
+    const index = tasks.findIndex((item) => item.title === deleteTitle);
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     addTasks(tasks);
