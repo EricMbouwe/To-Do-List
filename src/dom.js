@@ -23,7 +23,7 @@ const displayController = (() => {
     newCard.innerHTML = tasks
       .map((task) => {
         return `
-        <div class="card">
+        <div class="card ${task.priority.toLowerCase()}">
           <h2 class="card-title">${task.title}</h2>
           <p class="text-muted">${task.description}</p>
           <div class="text-left">${task.dueDate}</div>
@@ -48,7 +48,7 @@ const displayController = (() => {
     const newCard = document.createElement('div');
     newCard.classList.add('card-container', 'mw-full');
     newCard.innerHTML = `
-        <div class="card">
+        <div class="card ${task.priority.toLowerCase()}">
           <h2 class="card-title">${task.title}</h2>
           <p class="text-muted">${task.description}</p>
           <div class="text-left">${task.dueDate}</div>

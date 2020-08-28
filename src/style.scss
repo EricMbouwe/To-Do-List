@@ -41,7 +41,6 @@
   display: flex;
 
   .card {
-    background: antiquewhite;
     margin: 1rem !important;
     padding: 1.5rem !important;
   }
@@ -50,4 +49,16 @@
 .selected {
   background: antiquewhite;
   font-weight: bolder;
+}
+
+.high {
+  background: #ff3b3b;
+}
+
+.medium {
+  background: #ff3bf5;
+}
+
+.low {
+  background: antiquewhite;
 }
