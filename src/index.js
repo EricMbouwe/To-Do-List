@@ -29,9 +29,10 @@ displayController.populateProjectsPanel();
 
 const projectLinks = document.querySelectorAll('.project-link');
 projectLinks.forEach((link) =>
-  link.addEventListener('click', () =>
+  link.addEventListener('click', () => {
     displayController.addTasks(
       displayController.filterTasks(displayController.tasks, link.innerHTML)
-    )
-  )
+    );
+    displayController.selectedProject(link);
+  })
 );

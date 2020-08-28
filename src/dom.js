@@ -106,6 +106,12 @@ const displayController = (() => {
       taskFormParent.classList.add('d-none');
   };
 
+  const selectedProject = (project) => {
+    const projectLinks = document.querySelectorAll('.project-link');
+    projectLinks.forEach((link) => link.classList.remove('selected'));
+    project.classList.add('selected');
+  };
+
   return {
     title,
     description,
@@ -124,6 +130,7 @@ const displayController = (() => {
     cancelSubmission,
     filterTasks,
     populateSingleProject,
+    selectedProject,
   };
 })();
 
