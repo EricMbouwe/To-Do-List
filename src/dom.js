@@ -45,7 +45,7 @@ const displayController = (() => {
           <div class="delete-task btn btn-danger">Delete</div>
           <div class="edit-task btn btn-primary">Edit</div>
         </div> 
-      `
+      `,
       )
       .join('');
     tasksGrid.appendChild(newCard);
@@ -99,15 +99,12 @@ const displayController = (() => {
     projectElement.href = '#';
     projectElement.innerText = `${project}`;
     sidebarMenu.appendChild(projectElement);
-    projectElement.addEventListener('click', () =>
-      displayController.addTasks(
-        displayController.filterTasks(displayController.tasks, project)
-      )
-    );
+    projectElement.addEventListener('click', () => displayController.addTasks(
+      displayController.filterTasks(displayController.tasks, project),
+    ));
   };
 
-  const filterTasks = (tasks, project) =>
-    tasks.filter((task) => task.project === project);
+  const filterTasks = (tasks, project) => tasks.filter((task) => task.project === project);
 
   const displayProjectForm = () => {
     projectFormParent.classList.toggle('d-none');
@@ -115,7 +112,7 @@ const displayController = (() => {
 
   const displayTaskForm = (e) => {
     taskFormParent.classList.toggle('d-none');
-    if (e.srcElement.textContent == 'New task') {
+    if (e.srcElement.textContent === 'New task') {
       addTaskBtn.classList.remove('d-none');
       addTaskBtn.classList.add('d-inline');
     } else {
@@ -124,9 +121,12 @@ const displayController = (() => {
     }
   };
 
-  const cancelSubmission = () =>
-    projectFormParent.classList.add('d-none') ||
-    taskFormParent.classList.add('d-none');
+  const cancelSubmission = () => projectFormParent.classList.add('d-none')
+    || taskFormParent.classList.add('d-none');
+  addTaskBtn.classList.remove('d-inline');
+  addTaskBtn.classList.add('d-none');
+  updateTaskBtn.classList.remove('d-inline');
+  updateTaskBtn.classList.add('d-none');
 
   const selectedProject = (project) => {
     const projectLinks = document.querySelectorAll('.project-link');
@@ -145,25 +145,25 @@ const displayController = (() => {
   const prefillForm = (e) => {
     const editCard = e.path[1].firstElementChild.textContent;
     const index = tasks.findIndex((item) => item.title === editCard);
-    let editTask = tasks[index];
+    const editTask = tasks[index];
 
-    let editTitle = editTask.title;
-    let inputTitle = taskFormParent.querySelector('.title');
+    const editTitle = editTask.title;
+    const inputTitle = taskFormParent.querySelector('.title');
     inputTitle.value = editTitle;
 
-    let editDescription = editTask.description;
-    let inputDescription = taskFormParent.querySelector('.description');
+    const editDescription = editTask.description;
+    const inputDescription = taskFormParent.querySelector('.description');
     inputDescription.value = editDescription;
 
-    let editDueDate = editTask.dueDate;
-    let inputDueDate = taskFormParent.querySelector('#due-date');
+    const editDueDate = editTask.dueDate;
+    const inputDueDate = taskFormParent.querySelector('#due-date');
     inputDueDate.value = editDueDate;
 
-    let editProject = editTask.project;
-    let inputProject = taskFormParent.querySelector('.project-list');
+    const editProject = editTask.project;
+    const inputProject = taskFormParent.querySelector('.project-list');
     inputProject.value = editProject;
 
-    let editPriority = editTask.priority;
+    const editPriority = editTask.priority;
     document.querySelector(`[value="${editPriority}"]`).checked = true;
 
     return index;
@@ -194,7 +194,7 @@ const displayController = (() => {
     projectName.value = '';
     localStorage.setItem(
       'projects',
-      JSON.stringify(displayController.projects)
+      JSON.stringify(displayController.projects),
     );
     projectFormParent.classList.toggle('d-none');
   };

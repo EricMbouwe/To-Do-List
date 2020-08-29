@@ -7,8 +7,7 @@ const createTodo = (e) => {
   const getPriorityVal = () => {
     let priorityVal;
     for (let i = 0; i < displayController.priority.length; i += 1) {
-      if (displayController.priority[i].checked)
-        priorityVal = displayController.priority[i].value;
+      if (displayController.priority[i].checked) priorityVal = displayController.priority[i].value;
     }
     return priorityVal;
   };

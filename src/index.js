@@ -12,7 +12,7 @@ addTaskForm.addEventListener('submit', createTodo);
 const addProjectForm = document.querySelector('.add-project');
 addProjectForm.addEventListener(
   'submit',
-  displayController.handleProjectCreate
+  displayController.handleProjectCreate,
 );
 
 const projectBtn = document.getElementById('newProjectBtn');
@@ -32,17 +32,15 @@ cancelBtns.forEach((button) => {
 displayController.populateProjectsPanel();
 
 const projectLinks = document.querySelectorAll('.project-link');
-projectLinks.forEach((link) =>
-  link.addEventListener('click', () => {
-    displayController.addTasks(
-      displayController.filterTasks(
-        displayController.tasks,
-        `${link.innerHTML}`
-      )
-    );
-    displayController.selectedProject(link);
-  })
-);
+projectLinks.forEach((link) => link.addEventListener('click', () => {
+  displayController.addTasks(
+    displayController.filterTasks(
+      displayController.tasks,
+      `${link.innerHTML}`,
+    ),
+  );
+  displayController.selectedProject(link);
+}));
 
 window.addEventListener('load', () => {
   displayController.addTasks(displayController.tasks);
