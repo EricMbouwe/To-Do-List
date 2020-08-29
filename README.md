@@ -1,6 +1,6 @@
 # To-Do-List
-A simple to-do list built in javscript with the OOP paradigm
 
+A simple to-do list built in javscript with the OOP paradigm
 
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
@@ -16,7 +16,7 @@ A simple to-do list built in javscript with the OOP paradigm
 
 ## Live Demo
 
-[Live Demo Link](https://rawcdn.githack.com/EricMbouwe/To-Do-List/92c1296039a0274803dd3013972ddaf038df966e/dist/index.html#)
+[Live Demo Link](https://rawcdn.githack.com/EricMbouwe/To-Do-List/306b3b1014a1c8ea092d771bc980e0625261411c/dist/index.html)
 
 ## Getting Started
 
