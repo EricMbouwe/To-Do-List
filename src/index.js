@@ -21,6 +21,9 @@ projectBtn.addEventListener('click', displayController.displayProjectForm);
 const taskBtn = document.getElementById('newTaskBtn');
 taskBtn.addEventListener('click', displayController.displayTaskForm);
 
+const updateTaskBtn = document.querySelector('.update-task-btn');
+updateTaskBtn.addEventListener('click', displayController.updateTask);
+
 const cancelBtns = document.querySelectorAll('.cancel-btn');
 cancelBtns.forEach((button) => {
   button.addEventListener('click', displayController.cancelSubmission);

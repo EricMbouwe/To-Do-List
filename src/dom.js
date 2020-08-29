@@ -8,6 +8,8 @@ const displayController = (() => {
   const tasksGrid = document.querySelector('.tasks-grid');
   const projectFormParent = document.querySelector('.project-form-parent');
   const taskFormParent = document.querySelector('.task-form-parent');
+  const addTaskBtn = document.querySelector('.add-task-btn');
+  const updateTaskBtn = document.querySelector('.update-task-btn');
 
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   const projects = JSON.parse(localStorage.getItem('projects')) || ['General'];
@@ -18,6 +20,13 @@ const displayController = (() => {
     const deleteTask = document.querySelectorAll('.delete-task');
     deleteTask.forEach((button) => {
       button.addEventListener('click', displayController.handleDeleteTask);
+    });
+  };
+
+  const addEditListeners = () => {
+    const editTask = document.querySelectorAll('.edit-task');
+    editTask.forEach((button) => {
+      button.addEventListener('click', displayController.handleEditTask);
     });
   };
 
@@ -34,12 +43,14 @@ const displayController = (() => {
           <div class="text-left">${task.dueDate}</div>
           <p>Priority: ${task.priority}</p>
           <div class="delete-task btn btn-danger">Delete</div>
+          <div class="edit-task btn btn-primary">Edit</div>
         </div> 
       `
       )
       .join('');
     tasksGrid.appendChild(newCard);
     addDeleteListeners();
+    addEditListeners();
   };
 
   const newItem = (task) => {
@@ -52,6 +63,7 @@ const displayController = (() => {
           <div class="text-left">${task.dueDate}</div>
           <p>Priority: ${task.priority}</p>
           <div class="delete-task btn btn-danger">Delete</div>
+          <div class="edit-task btn btn-primary">Edit</div>
         </div>
       `;
     tasksGrid.appendChild(newCard);
@@ -101,8 +113,15 @@ const displayController = (() => {
     projectFormParent.classList.toggle('d-none');
   };
 
-  const displayTaskForm = () => {
+  const displayTaskForm = (e) => {
     taskFormParent.classList.toggle('d-none');
+    if (e.srcElement.textContent == 'New task') {
+      addTaskBtn.classList.remove('d-none');
+      addTaskBtn.classList.add('d-inline');
+    } else {
+      updateTaskBtn.classList.remove('d-none');
+      updateTaskBtn.classList.add('d-inline');
+    }
   };
 
   const cancelSubmission = () =>
@@ -121,6 +140,46 @@ const displayController = (() => {
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     addTasks(tasks);
+  };
+
+  const prefillForm = (e) => {
+    const editCard = e.path[1].firstElementChild.textContent;
+    const index = tasks.findIndex((item) => item.title === editCard);
+    let editTask = tasks[index];
+
+    let editTitle = editTask.title;
+    let inputTitle = taskFormParent.querySelector('.title');
+    inputTitle.value = editTitle;
+
+    let editDescription = editTask.description;
+    let inputDescription = taskFormParent.querySelector('.description');
+    inputDescription.value = editDescription;
+
+    let editDueDate = editTask.dueDate;
+    let inputDueDate = taskFormParent.querySelector('#due-date');
+    inputDueDate.value = editDueDate;
+
+    let editProject = editTask.project;
+    let inputProject = taskFormParent.querySelector('.project-list');
+    inputProject.value = editProject;
+
+    let editPriority = editTask.priority;
+    document.querySelector(`[value="${editPriority}"]`).checked = true;
+
+    return index;
+  };
+
+  const handleEditTask = (e) => {
+    displayTaskForm(e);
+    prefillForm(e);
+  };
+
+  const updateTask = () => {
+    tasks.splice(prefillForm.index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    addTasks(tasks);
+    updateTaskBtn.classList.remove('d-inline');
+    updateTaskBtn.classList.add('d-none');
   };
 
   const handleProjectCreate = (e) => {
@@ -146,6 +205,7 @@ const displayController = (() => {
     dueDate,
     priority,
     projectList,
+    addTaskBtn,
     clearContents,
     addTasks,
     tasks,
@@ -162,6 +222,9 @@ const displayController = (() => {
     handleDeleteTask,
     addDeleteListeners,
     handleProjectCreate,
+    handleEditTask,
+    addEditListeners,
+    updateTask,
   };
 })();
 
