@@ -1,0 +1,43 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "A to-do list app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricMbouwe/To-Do-List.git"
+  },
+  "author": "Eric mbouwe and Azeem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EricMbouwe/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/EricMbouwe/To-Do-List#readme",
+  "devDependencies": {
+    "@types/halfmoon": "^1.0.0",
+    "css-loader": "^4.2.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.8.0",
+    "stylelint-scss": "^3.17.2",
+    "web-dev-server": "^3.0.22",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "halfmoon": "^1.0.4"
+  }
+}

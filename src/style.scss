@@ -1,0 +1,64 @@
+@import '~halfmoon/css/halfmoon.min.css';
+
+.project-form-parent,
+.task-form-parent {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 100;
+
+  form {
+    border: 1px solid #000;
+    padding: 2rem;
+    background-color: #eee;
+    border-radius: 3px;
+  }
+}
+
+.projects-panel {
+  flex: 1;
+}
+
+.tasks-panel {
+  flex: 3;
+}
+
+// .tasks-grid > div{
+//   // display: flex;
+
+//   .card {
+//     flex: 1;
+//   }
+// }
+
+.card-container {
+  display: flex;
+
+  .card {
+    margin: 1rem !important;
+    padding: 1.5rem !important;
+  }
+}
+
+.selected {
+  background: antiquewhite;
+  font-weight: bolder;
+}
+
+.high {
+  background: #ff3b3b;
+}
+
+.medium {
+  background: #ff3bf5;
+}
+
+.low {
+  background: antiquewhite;
+}
