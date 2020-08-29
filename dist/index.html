@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="projects-panel page-wrapper with-sidebar" id="projectsPanel">
+        <div class="projects-grid"></div>
+
+        <div class="sidebar">
+          <div class="sidebar-menu">
+            <!-- Sidebar brand -->
+            <a href="#" class="sidebar-brand">
+              To-Do List
+            </a>
+            <!-- Sidebar links and titles -->
+            <h5 class="sidebar-title">Getting started</h5>
+            <div class="sidebar-divider"></div>
+            <a href="#" id="newProjectBtn" class="sidebar-link active">New project</a>
+            <a href="#" id="newTaskBtn" class="sidebar-link active">New task</a>
+            <br />
+            <h5 class="sidebar-title">Projects</h5>
+            <div class="sidebar-divider"></div>
+            <a class="all-tasks project-link sidebar-link" href="#">All</a>            
+          </div>
+
+
+
+        <!-- New Project Form -->
+        <div class="project-form-parent d-none">
+          <form
+            action="..."
+            method="..."
+            class="w-400 mw-full add-project"
+            id="addProject"
+          >
+            <div class="form-group">
+              <label for="project-name" class="required">Project Name</label>
+              <input
+                class="project"
+                type="text"
+                class="form-control"
+                id="project-name"
+                placeholder="Project Name..."
+                required="required"
+              />
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="add-project" />
+            <input
+              type="reset"
+              class="btn btn-primary cancel-btn"
+              value="cancel"
+            />
+          </form>
+        </div>
+
+        <!-- Projects list -->
+      </div>
+
+      <div class="tasks-panel content-wrapper" id="tasksPanel">
+        <div class="tasks-grid"></div>
+
+        <!-- New Task Form -->
+        <div class="task-form-parent d-none">
+          <form action="..." method="..." class="w-400 mw-full add-task">
+            <!-- w-400 = width: 40rem (400px), mw-full = max-width: 100% -->
+            <!-- Input -->
+            <div class="form-group">
+              <label for="full-name" class="required">Title</label>
+              <input
+                class="title"
+                type="text"
+                class="form-control"
+                id="full-name"
+                placeholder="Full name"
+                required="required"
+              />
+            </div>
+
+            <!-- Project Select -->
+
+            <div class="form-group">
+              <label for="projects" class="required">Select a Project</label>
+              <select
+                class="project-list form-control"
+                id="projects"
+                required="required"
+              >
+                <option value="" selected="selected" disabled="disabled">
+                  Select a project
+                </option>
+                <option value="General">General</option>
+              </select>
+            </div>
+
+            <!-- Radio Priority -->
+            <div class="radio-buttons form-group">
+              <label for="gender-male" class="required">Priority</label>
+              <div class="custom-radio">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="priority-low"
+                  value="Low"
+                  required="required"
+                  checked="checked"
+                />
+                <label for="priority-low">Low</label>
+              </div>
+              <div class="custom-radio">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="priority-medium"
+                  value="Medium"
+                  required="required"
+                />
+                <label for="priority-medium">Medium</label>
+              </div>
+              <div class="custom-radio">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="priority-high"
+                  value="High"
+                  required="required"
+                />
+                <label for="priority-high">High</label>
+              </div>
+            </div>
+
+            <!-- Select -->
+            <div class="form-group">
+              <label for="area-of-specialization" class="required"
+                >Due Date</label
+              >
+              <input type="date" id="due-date" name="due-date" />
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                class="description form-control"
+                id="description"
+                placeholder="Write a short description about your task."
+              ></textarea>
+            </div>
+
+            <!-- Submit button -->
+            <input type="submit" class="add-task-btn btn btn-primary d-none" value="add-task" />
+            <input type="submit" class="update-task-btn btn btn-primary d-none" value="Update" />
+            <input
+              type="reset"
+              class="btn btn-primary cancel-btn"
+              value="cancel"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Required for the custom file input -->
+
+    <script src="main.js"></script>
+  </body>
+</html>
