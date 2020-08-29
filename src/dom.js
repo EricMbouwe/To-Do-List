@@ -14,7 +14,6 @@ const displayController = (() => {
 
   const sidebarMenu = document.querySelector('.sidebar-menu');
 
-
   const addDeleteListeners = () => {
     const deleteTask = document.querySelectorAll('.delete-task');
     deleteTask.forEach((button) => {
@@ -27,7 +26,8 @@ const displayController = (() => {
     const newCard = document.createElement('div');
     newCard.classList.add('card-container', 'mw-full');
     newCard.innerHTML = tasks
-      .map((task) => `
+      .map(
+        (task) => `
         <div class="card ${task.priority.toLowerCase()}">
           <h2 class="card-title">${task.title}</h2>
           <p class="text-muted">${task.description}</p>
@@ -35,7 +35,8 @@ const displayController = (() => {
           <p>Priority: ${task.priority}</p>
           <div class="delete-task btn btn-danger">Delete</div>
         </div> 
-      `)
+      `
+      )
       .join('');
     tasksGrid.appendChild(newCard);
     addDeleteListeners();
@@ -86,12 +87,15 @@ const displayController = (() => {
     projectElement.href = '#';
     projectElement.innerText = `${project}`;
     sidebarMenu.appendChild(projectElement);
-    projectElement.addEventListener('click', () => displayController.addTasks(
-      displayController.filterTasks(displayController.tasks, project),
-    ));
+    projectElement.addEventListener('click', () =>
+      displayController.addTasks(
+        displayController.filterTasks(displayController.tasks, project)
+      )
+    );
   };
 
-  const filterTasks = (tasks, project) => tasks.filter((task) => task.project === project);
+  const filterTasks = (tasks, project) =>
+    tasks.filter((task) => task.project === project);
 
   const displayProjectForm = () => {
     projectFormParent.classList.toggle('d-none');
@@ -101,7 +105,9 @@ const displayController = (() => {
     taskFormParent.classList.toggle('d-none');
   };
 
-  const cancelSubmission = () => projectFormParent.classList.add('d-none') || taskFormParent.classList.add('d-none');
+  const cancelSubmission = () =>
+    projectFormParent.classList.add('d-none') ||
+    taskFormParent.classList.add('d-none');
 
   const selectedProject = (project) => {
     const projectLinks = document.querySelectorAll('.project-link');
@@ -115,6 +121,23 @@ const displayController = (() => {
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     addTasks(tasks);
+  };
+
+  const handleProjectCreate = (e) => {
+    e.preventDefault();
+
+    const projectFormParent = document.querySelector('.project-form-parent');
+    const projectName = document.querySelector('.project');
+    const project = projectName.value;
+    projects.push(project);
+    projectSelection();
+    populateSingleProject(project);
+    projectName.value = '';
+    localStorage.setItem(
+      'projects',
+      JSON.stringify(displayController.projects)
+    );
+    projectFormParent.classList.toggle('d-none');
   };
 
   return {
@@ -138,6 +161,7 @@ const displayController = (() => {
     selectedProject,
     handleDeleteTask,
     addDeleteListeners,
+    handleProjectCreate,
   };
 })();
 
